@@ -2,10 +2,15 @@
 
 Frontend completo en Svelte 5 para la práctica 1, consumiendo el backend de productos, autenticación, carrito y administración de usuarios.
 
+Repositorio público:
+
+- [ikercelaya/Practica1PWII](https://github.com/ikercelaya/Practica1PWII)
+
 Este repositorio contiene:
 
-- Backend base en [backend](/C:/Users/ikerc/Desktop/Practica1PWII/backend)
-- Frontend SPA en Svelte 5 en [frontend](/C:/Users/ikerc/Desktop/Practica1PWII/frontend)
+- Backend base en [`backend/`](backend/)
+- Frontend SPA en Svelte 5 en [`frontend/`](frontend/)
+- Memoria corta en [`MEMORIA_CORTA.md`](MEMORIA_CORTA.md)
 
 ## 1. Objetivo de la práctica
 
@@ -31,17 +36,17 @@ Construir una aplicación frontend en Svelte 5 que consuma una API existente y r
 
 ### Backend
 
-- [backend/server.js](/C:/Users/ikerc/Desktop/Practica1PWII/backend/server.js)
-- [backend/src/app.js](/C:/Users/ikerc/Desktop/Practica1PWII/backend/src/app.js)
+- [`backend/server.js`](backend/server.js)
+- [`backend/src/app.js`](backend/src/app.js)
 
 ### Frontend
 
-- [frontend/src/App.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/App.svelte): composición principal de la SPA
-- [frontend/src/components](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components): componentes reutilizables
-- [frontend/src/pages](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/pages): pantallas principales
-- [frontend/src/lib](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/lib): router, utilidades, cliente base
-- [frontend/src/services](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/services): acceso a servicios API
-- [frontend/src/stores](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/stores): estado global
+- [`frontend/src/App.svelte`](frontend/src/App.svelte): composición principal de la SPA
+- [`frontend/src/components/`](frontend/src/components/): componentes reutilizables
+- [`frontend/src/pages/`](frontend/src/pages/): pantallas principales
+- [`frontend/src/lib/`](frontend/src/lib/): router, utilidades y cliente base
+- [`frontend/src/services/`](frontend/src/services/): acceso a servicios API
+- [`frontend/src/stores/`](frontend/src/stores/): estado global
 
 ## 4. Funcionalidades implementadas
 
@@ -90,11 +95,11 @@ Se usa para estado local de componentes y pantallas.
 
 Ejemplos:
 
-- [frontend/src/pages/LoginPage.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/pages/LoginPage.svelte): `loading`
-- [frontend/src/pages/RegisterPage.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/pages/RegisterPage.svelte): `loading`
-- [frontend/src/pages/CatalogPage.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/pages/CatalogPage.svelte): búsqueda, filtros, producto seleccionado
-- [frontend/src/pages/AdminPage.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/pages/AdminPage.svelte): usuario y producto seleccionados, estados de guardado
-- [frontend/src/components/UserForm.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/UserForm.svelte): selección de rol
+- [`frontend/src/pages/LoginPage.svelte`](frontend/src/pages/LoginPage.svelte): estado de envío del formulario
+- [`frontend/src/pages/RegisterPage.svelte`](frontend/src/pages/RegisterPage.svelte): estado de envío del formulario
+- [`frontend/src/pages/CatalogPage.svelte`](frontend/src/pages/CatalogPage.svelte): búsqueda, filtros y producto seleccionado
+- [`frontend/src/pages/AdminPage.svelte`](frontend/src/pages/AdminPage.svelte): usuario y producto seleccionados, estados de guardado
+- [`frontend/src/components/UserForm.svelte`](frontend/src/components/UserForm.svelte): selección de rol
 
 ### `$derived()`
 
@@ -102,11 +107,11 @@ Se usa para valores derivados sin recalcular manualmente.
 
 Ejemplos:
 
-- [frontend/src/App.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/App.svelte): componente de página actual según la ruta
-- [frontend/src/pages/CatalogPage.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/pages/CatalogPage.svelte): productos filtrados y contador visible
-- [frontend/src/pages/ProfilePage.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/pages/ProfilePage.svelte): etiqueta de rol
-- [frontend/src/components/ProductCard.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/ProductCard.svelte): estado visual del producto e imagen
-- [frontend/src/components/ProductDetailModal.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/ProductDetailModal.svelte): estado e imagen del detalle
+- [`frontend/src/App.svelte`](frontend/src/App.svelte): componente de página actual según la ruta
+- [`frontend/src/pages/CatalogPage.svelte`](frontend/src/pages/CatalogPage.svelte): productos filtrados y contador visible
+- [`frontend/src/pages/ProfilePage.svelte`](frontend/src/pages/ProfilePage.svelte): etiqueta de rol
+- [`frontend/src/components/ProductCard.svelte`](frontend/src/components/ProductCard.svelte): estado visual del producto e imagen
+- [`frontend/src/components/ProductDetailModal.svelte`](frontend/src/components/ProductDetailModal.svelte): estado e imagen del detalle
 
 ### `$effect()`
 
@@ -114,9 +119,9 @@ Se usa para side effects y sincronización.
 
 Ejemplos:
 
-- [frontend/src/App.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/App.svelte): redirección al login si el usuario no está autenticado y protección de rutas admin
-- [frontend/src/pages/CatalogPage.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/pages/CatalogPage.svelte): recarga reactiva de productos cuando cambia la búsqueda
-- [frontend/src/components/UserForm.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/UserForm.svelte): sincronización del rol al editar usuarios
+- [`frontend/src/App.svelte`](frontend/src/App.svelte): redirección al login si el usuario no está autenticado y protección de rutas admin
+- [`frontend/src/pages/CatalogPage.svelte`](frontend/src/pages/CatalogPage.svelte): recarga reactiva de productos cuando cambia la búsqueda
+- [`frontend/src/components/UserForm.svelte`](frontend/src/components/UserForm.svelte): sincronización del rol al editar usuarios
 
 ### `$props()`
 
@@ -124,12 +129,12 @@ Se usa para definir props en componentes reutilizables.
 
 Ejemplos:
 
-- [frontend/src/components/Layout.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/Layout.svelte)
-- [frontend/src/components/Link.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/Link.svelte)
-- [frontend/src/components/ProductCard.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/ProductCard.svelte)
-- [frontend/src/components/ProductForm.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/ProductForm.svelte)
-- [frontend/src/components/UserForm.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/UserForm.svelte)
-- [frontend/src/components/ProductDetailModal.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/ProductDetailModal.svelte)
+- [`frontend/src/components/Layout.svelte`](frontend/src/components/Layout.svelte)
+- [`frontend/src/components/Link.svelte`](frontend/src/components/Link.svelte)
+- [`frontend/src/components/ProductCard.svelte`](frontend/src/components/ProductCard.svelte)
+- [`frontend/src/components/ProductForm.svelte`](frontend/src/components/ProductForm.svelte)
+- [`frontend/src/components/UserForm.svelte`](frontend/src/components/UserForm.svelte)
+- [`frontend/src/components/ProductDetailModal.svelte`](frontend/src/components/ProductDetailModal.svelte)
 
 ### Callbacks entre componentes
 
@@ -137,19 +142,19 @@ Se usan callbacks en lugar de eventos clásicos para comunicar acciones del hijo
 
 Ejemplos:
 
-- `onAdd`, `onEdit`, `onDelete`, `onView` en [frontend/src/components/ProductCard.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/ProductCard.svelte)
-- `onSubmit` en [frontend/src/components/ProductForm.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/ProductForm.svelte)
-- `onSubmit` en [frontend/src/components/UserForm.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/UserForm.svelte)
-- `onClose` y `onAdd` en [frontend/src/components/ProductDetailModal.svelte](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/components/ProductDetailModal.svelte)
+- `onAdd`, `onEdit`, `onDelete`, `onView` en [`frontend/src/components/ProductCard.svelte`](frontend/src/components/ProductCard.svelte)
+- `onSubmit` en [`frontend/src/components/ProductForm.svelte`](frontend/src/components/ProductForm.svelte)
+- `onSubmit` en [`frontend/src/components/UserForm.svelte`](frontend/src/components/UserForm.svelte)
+- `onClose` y `onAdd` en [`frontend/src/components/ProductDetailModal.svelte`](frontend/src/components/ProductDetailModal.svelte)
 
 ## 7. Estado global de la aplicación
 
 Se ha organizado en stores:
 
-- [frontend/src/stores/auth.js](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/stores/auth.js): autenticación, token y usuario
-- [frontend/src/stores/products.js](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/stores/products.js): productos cargados
-- [frontend/src/stores/cart.js](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/stores/cart.js): carrito y derivados de cantidad y total
-- [frontend/src/stores/users.js](/C:/Users/ikerc/Desktop/Practica1PWII/frontend/src/stores/users.js): usuarios para administración
+- [`frontend/src/stores/auth.js`](frontend/src/stores/auth.js): autenticación, token y usuario
+- [`frontend/src/stores/products.js`](frontend/src/stores/products.js): productos cargados
+- [`frontend/src/stores/cart.js`](frontend/src/stores/cart.js): carrito y derivados de cantidad y total
+- [`frontend/src/stores/users.js`](frontend/src/stores/users.js): usuarios para administración
 
 ## 8. Backend utilizado
 
@@ -207,19 +212,23 @@ El backend espera por defecto:
 
 ## 10. Cómo ejecutar el proyecto
 
-### 1. Abrir el proyecto en VS Code
+### 1. Clonar y abrir el repositorio
 
-Abre la carpeta:
+```bash
+git clone https://github.com/ikercelaya/Practica1PWII.git
+cd Practica1PWII
+```
 
-- [C:/Users/ikerc/Desktop/Practica1PWII](/C:/Users/ikerc/Desktop/Practica1PWII)
+Después, abre esa carpeta en Visual Studio Code.
 
 ### 2. Configurar el backend
 
 Abre una terminal en VS Code y ejecuta:
 
 ```powershell
-cd C:\Users\ikerc\Desktop\Practica1PWII\backend
+cd backend
 Copy-Item .env.example .env
+cmd /c npm.cmd install
 cmd /c npm.cmd run seed
 cmd /c npm.cmd run dev
 ```
@@ -227,6 +236,7 @@ cmd /c npm.cmd run dev
 Esto:
 
 - crea el archivo `.env`
+- instala dependencias
 - inserta usuarios de prueba
 - arranca el backend en `http://localhost:3000`
 
@@ -235,8 +245,9 @@ Esto:
 Abre otra terminal y ejecuta:
 
 ```powershell
-cd C:\Users\ikerc\Desktop\Practica1PWII\frontend
+cd frontend
 Copy-Item .env.example .env
+cmd /c npm.cmd install
 cmd /c npm.cmd run dev
 ```
 
@@ -264,7 +275,7 @@ Si ejecutas el seed del backend:
 ### Frontend
 
 ```powershell
-cd C:\Users\ikerc\Desktop\Practica1PWII\frontend
+cd frontend
 cmd /c npm.cmd run dev
 cmd /c npm.cmd run build
 ```
@@ -272,7 +283,7 @@ cmd /c npm.cmd run build
 ### Backend
 
 ```powershell
-cd C:\Users\ikerc\Desktop\Practica1PWII\backend
+cd backend
 cmd /c npm.cmd run dev
 cmd /c npm.cmd run seed
 ```
@@ -282,7 +293,7 @@ cmd /c npm.cmd run seed
 Se ha verificado correctamente la compilación del frontend con:
 
 ```powershell
-cd C:\Users\ikerc\Desktop\Practica1PWII\frontend
+cd frontend
 cmd /c npm.cmd run build
 ```
 
@@ -320,12 +331,11 @@ cmd /c npm.cmd run build
 Este README documenta:
 
 - cómo instalar y ejecutar el proyecto
-- qué runas de Svelte 5 se han usado y en qué componentes
+- qué runes de Svelte 5 se han usado y en qué componentes
 - qué endpoints del backend se consumen
 - qué roles intervienen en la aplicación
 
-Para la entrega en Campus solo faltaría subir:
+Para la entrega en Campus se incluye además:
 
-- el enlace al repositorio público
 - este README
-- la documentación o memoria que te pidan junto a la práctica
+- la memoria corta en [`MEMORIA_CORTA.md`](MEMORIA_CORTA.md)
