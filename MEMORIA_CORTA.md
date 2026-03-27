@@ -1,5 +1,11 @@
 # Memoria corta - Práctica 1 PW2
 
+## Acceso rápido
+
+Repositorio público:
+
+- [ikercelaya/Practica1PWII](https://github.com/ikercelaya/Practica1PWII)
+
 ## 1. Descripción general
 
 En esta práctica se ha desarrollado un frontend completo en Svelte 5 para consumir una API REST ya proporcionada. La aplicación implementa autenticación con JWT, navegación SPA, gestión global del estado, catálogo de productos, carrito y una zona de administración con control de acceso por roles.
