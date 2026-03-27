@@ -2,9 +2,22 @@
 
 Frontend completo en Svelte 5 para la práctica 1, consumiendo el backend de productos, autenticación, carrito y administración de usuarios.
 
+## Acceso rápido
+
 Repositorio público:
 
 - [ikercelaya/Practica1PWII](https://github.com/ikercelaya/Practica1PWII)
+
+Usuarios de prueba para acceder a la web:
+
+- `admin` / `admin123`
+- `user` / `user123`
+
+Importante para ejecutar el proyecto:
+
+- hay que abrir `2 terminales` distintas en Visual Studio Code
+- una terminal es para el `backend`
+- otra terminal es para el `frontend`
 
 Este repositorio contiene:
 
@@ -76,6 +89,8 @@ Construir una aplicación frontend en Svelte 5 que consuma una API existente y r
 - Confirmación de acciones destructivas
 - Perfil de usuario
 - Carrito conectado a backend
+- Finalización de compra simulada
+- Historial de pedidos por usuario
 
 ## 5. Pantallas de la aplicación
 
@@ -84,6 +99,7 @@ Construir una aplicación frontend en Svelte 5 que consuma una API existente y r
 - `/`: página de inicio
 - `/catalogo`: listado, filtros y detalle de productos
 - `/perfil`: perfil del usuario autenticado
+- `/pedidos`: historial de pedidos del usuario autenticado
 - `/carrito`: carrito del usuario autenticado
 - `/admin`: panel de administración para rol `admin`
 
@@ -154,6 +170,7 @@ Se ha organizado en stores:
 - [`frontend/src/stores/auth.js`](frontend/src/stores/auth.js): autenticación, token y usuario
 - [`frontend/src/stores/products.js`](frontend/src/stores/products.js): productos cargados
 - [`frontend/src/stores/cart.js`](frontend/src/stores/cart.js): carrito y derivados de cantidad y total
+- [`frontend/src/stores/orders.js`](frontend/src/stores/orders.js): pedidos simulados persistidos por usuario
 - [`frontend/src/stores/users.js`](frontend/src/stores/users.js): usuarios para administración
 
 ## 8. Backend utilizado
@@ -194,7 +211,14 @@ Usuarios:
 
 El backend real proporciona `nombre`, `precio` e `imagen` en productos. No expone de forma nativa un campo `activo`, por lo que en el frontend el estado se representa visualmente como activo por defecto si ese campo no llega en la respuesta. Esto se ha hecho para ajustarse a la rúbrica sin inventar persistencia adicional en la API.
 
-## 9. Instalación
+El backend tampoco expone endpoints de pedidos. Por ese motivo, la funcionalidad de finalizar compra se ha simulado en el frontend:
+
+- al pulsar `Finalizar compra`, se guarda un pedido en `localStorage`
+- el pedido queda asociado al usuario autenticado
+- después se vacía el carrito real usando la API existente
+- el historial se consulta en la ruta `/pedidos`
+
+## 9. Instalación desde cero
 
 ### Requisitos previos
 
@@ -203,27 +227,111 @@ Necesitas tener instalado:
 - Node.js
 - MongoDB
 - Redis
+- Git
+- Visual Studio Code recomendado
 
 El backend espera por defecto:
 
 - MongoDB en `mongodb://localhost:27017/productos`
 - Backend en puerto `3000`
 - Frontend en puerto `5173`
+- Redis en `redis://localhost:6379`
 
-## 10. Cómo ejecutar el proyecto
+### Instalación recomendada de programas
 
-### 1. Clonar y abrir el repositorio
+#### 1. Node.js
+
+Instala una versión LTS de Node.js desde:
+
+- [https://nodejs.org](https://nodejs.org)
+
+#### 2. Git
+
+Instálalo desde:
+
+- [https://git-scm.com/downloads](https://git-scm.com/downloads)
+
+#### 3. MongoDB
+
+Puedes usar una de estas opciones:
+
+- MongoDB Community Server instalado localmente
+- MongoDB Compass junto con un servidor local ya instalado
+- contenedor Docker de MongoDB
+
+Ejemplo con Docker:
+
+```bash
+docker run --name practica1-mongo -p 27017:27017 -d mongo
+```
+
+#### 4. Redis
+
+Puedes usar una de estas opciones:
+
+- Redis instalado localmente
+- contenedor Docker de Redis
+
+Ejemplo con Docker:
+
+```bash
+docker run --name practica1-redis -p 6379:6379 -d redis
+```
+
+Si ya existe el contenedor y está parado:
+
+```bash
+docker start practica1-redis
+```
+
+## 10. Cómo ejecutar el proyecto desde cero
+
+### 1. Clonar el repositorio
 
 ```bash
 git clone https://github.com/ikercelaya/Practica1PWII.git
 cd Practica1PWII
 ```
 
-Después, abre esa carpeta en Visual Studio Code.
+### 2. Abrir el proyecto en Visual Studio Code
 
-### 2. Configurar el backend
+Abre la carpeta del repositorio en VS Code.
 
-Abre una terminal en VS Code y ejecuta:
+### 3. Arrancar MongoDB
+
+Si lo tienes instalado localmente, asegúrate de que el servicio está iniciado.
+
+Si usas Docker:
+
+```bash
+docker start practica1-mongo
+```
+
+o, si no existe todavía:
+
+```bash
+docker run --name practica1-mongo -p 27017:27017 -d mongo
+```
+
+### 4. Arrancar Redis
+
+Si lo tienes instalado localmente, asegúrate de que está escuchando en el puerto `6379`.
+
+Si usas Docker:
+
+```bash
+docker start practica1-redis
+```
+
+o, si no existe todavía:
+
+```bash
+docker run --name practica1-redis -p 6379:6379 -d redis
+```
+
+### 5. Configurar y arrancar el backend
+
+Abre la primera terminal en VS Code para el backend y ejecuta:
 
 ```powershell
 cd backend
@@ -240,9 +348,17 @@ Esto:
 - inserta usuarios de prueba
 - arranca el backend en `http://localhost:3000`
 
-### 3. Configurar el frontend
+Cuando el backend está bien levantado deberías ver algo parecido a:
 
-Abre otra terminal y ejecuta:
+```text
+Redis Client Ready
+Conectado a MongoDB
+Servidor en http://localhost:3000
+```
+
+### 6. Configurar y arrancar el frontend
+
+Abre la segunda terminal en VS Code para el frontend y ejecuta:
 
 ```powershell
 cd frontend
@@ -255,13 +371,30 @@ Esto arranca Vite en:
 
 - `http://localhost:5173`
 
-### 4. Abrir la aplicación
+Cuando el frontend está bien levantado deberías ver algo parecido a:
+
+```text
+Local: http://localhost:5173/
+```
+
+### 7. Abrir la aplicación
 
 URLs principales:
 
 - Frontend: `http://localhost:5173`
 - API backend: `http://localhost:3000/api`
 - Swagger del backend: `http://localhost:3000/api-docs`
+
+### 8. Comprobaciones rápidas
+
+Si `http://localhost:3000/api` muestra `Cannot GET /api`, no es un error.
+Eso ocurre porque no existe una ruta raíz `GET /api`; la API expone endpoints concretos como:
+
+- `http://localhost:3000/api/productos`
+- `http://localhost:3000/api/login`
+- `http://localhost:3000/api/register`
+
+Si `http://localhost:5173` da `ERR_CONNECTION_REFUSED`, significa que el frontend todavía no está arrancado.
 
 ## 11. Usuarios de prueba
 
@@ -297,7 +430,28 @@ cd frontend
 cmd /c npm.cmd run build
 ```
 
-## 14. Correspondencia con los criterios de evaluación
+## 14. Problemas frecuentes
+
+### Error de Redis `ENOTFOUND redis`
+
+Significa que el backend estaba intentando conectarse al host `redis`, que solo funciona dentro de algunas redes Docker. En este proyecto ya está configurado por defecto para usar:
+
+- `redis://localhost:6379`
+
+### `Cannot GET /api`
+
+No es un fallo. Significa simplemente que no existe una ruta `GET /api`.
+
+### `ERR_CONNECTION_REFUSED` en `localhost:5173`
+
+El frontend no está ejecutándose todavía. Hay que lanzar:
+
+```powershell
+cd frontend
+cmd /c npm.cmd run dev
+```
+
+## 15. Correspondencia con los criterios de evaluación
 
 ### Requisitos mínimos backend/frontend
 
@@ -323,19 +477,6 @@ cmd /c npm.cmd run build
 - Gestión de usuarios y roles
 - Persistencia de sesión
 - Filtros
+- Simulación de checkout y pedidos
 - UX mejorada
 - Formularios con validaciones básicas y feedback
-
-## 15. Entrega
-
-Este README documenta:
-
-- cómo instalar y ejecutar el proyecto
-- qué runes de Svelte 5 se han usado y en qué componentes
-- qué endpoints del backend se consumen
-- qué roles intervienen en la aplicación
-
-Para la entrega en Campus se incluye además:
-
-- este README
-- la memoria corta en [`MEMORIA_CORTA.md`](MEMORIA_CORTA.md)

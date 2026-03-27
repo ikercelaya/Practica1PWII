@@ -391,11 +391,33 @@ label {
 }
 
 .user-row,
-.cart-row {
+.cart-row,
+.order-row,
+.order-head,
+.checkout-bar {
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: 14px;
   align-items: center;
+}
+
+.order-head {
+  grid-template-columns: 1fr auto;
+}
+
+.order-row {
+  grid-template-columns: 1fr auto;
+  padding: 14px 0;
+  border-top: 1px solid rgba(19, 34, 56, 0.08);
+}
+
+.checkout-bar {
+  grid-template-columns: auto auto;
+  justify-content: end;
+}
+
+.checkout-button {
+  min-width: 220px;
 }
 
 .empty-state {
@@ -457,7 +479,10 @@ label {
 
   .section-head,
   .user-row,
-  .cart-row {
+  .cart-row,
+  .order-row,
+  .order-head,
+  .checkout-bar {
     grid-template-columns: 1fr;
     align-items: start;
   }

@@ -8,10 +8,11 @@
 
   const links = [
     { href: '/', label: 'Inicio' },
-    { href: '/catalogo', label: 'Catálogo' },
+    { href: '/catalogo', label: 'Catalogo' },
     { href: '/perfil', label: 'Perfil', auth: true },
+    { href: '/pedidos', label: 'Pedidos', auth: true },
     { href: '/carrito', label: 'Carrito', auth: true },
-    { href: '/admin', label: 'Administración', admin: true }
+    { href: '/admin', label: 'Administracion', admin: true }
   ];
 
   function logout() {
@@ -24,7 +25,7 @@
 <div class="shell">
   <header class="topbar">
     <div>
-      <p class="eyebrow">Práctica 1</p>
+      <p class="eyebrow">Practica 1</p>
       <Link href="/" className="brand">PW2 Shop</Link>
     </div>
 

@@ -7,6 +7,7 @@
   import RegisterPage from './pages/RegisterPage.svelte';
   import CatalogPage from './pages/CatalogPage.svelte';
   import ProfilePage from './pages/ProfilePage.svelte';
+  import OrdersPage from './pages/OrdersPage.svelte';
   import CartPage from './pages/CartPage.svelte';
   import AdminPage from './pages/AdminPage.svelte';
   import NotFoundPage from './pages/NotFoundPage.svelte';
@@ -14,7 +15,7 @@
   import { cart } from './stores/cart.js';
   import { auth, isAuthenticated, isAdmin } from './stores/auth.js';
 
-  const protectedRoutes = new Set(['/perfil', '/carrito', '/admin']);
+  const protectedRoutes = new Set(['/perfil', '/pedidos', '/carrito', '/admin']);
 
   const Page = $derived.by(() => {
     if ($currentPath === '/') return HomePage;
@@ -22,6 +23,7 @@
     if ($currentPath === '/register') return RegisterPage;
     if ($currentPath === '/catalogo') return CatalogPage;
     if ($currentPath === '/perfil') return ProfilePage;
+    if ($currentPath === '/pedidos') return OrdersPage;
     if ($currentPath === '/carrito') return CartPage;
     if ($currentPath === '/admin') return AdminPage;
     return NotFoundPage;

@@ -15,8 +15,25 @@ El objetivo principal ha sido construir una interfaz funcional y mantenible que 
 - Backend Express
 - MongoDB
 - Redis
+- Git
 
-## 3. Funcionalidades implementadas
+## 3. Requisitos de ejecución
+
+Para poner en marcha el proyecto desde cero es necesario disponer de:
+
+- Node.js
+- MongoDB
+- Redis
+- Git
+
+El backend se conecta por defecto a:
+
+- MongoDB en `mongodb://localhost:27017/productos`
+- Redis en `redis://localhost:6379`
+
+Tanto MongoDB como Redis pueden ejecutarse instalados localmente o mediante contenedores Docker.
+
+## 4. Funcionalidades implementadas
 
 La aplicación incluye las siguientes funcionalidades:
 
@@ -30,11 +47,13 @@ La aplicación incluye las siguientes funcionalidades:
 - detalle de producto en modal
 - creación, edición y borrado de productos para administradores
 - carrito de compra asociado al usuario autenticado
+- simulación de finalización de compra
+- historial de pedidos por usuario
 - panel de administración de usuarios
 - pantalla de perfil del usuario
 - feedback visual de carga, errores y acciones completadas
 
-## 4. Uso de Svelte 5
+## 5. Uso de Svelte 5
 
 Se han utilizado las runes principales exigidas en la práctica:
 
@@ -45,7 +64,7 @@ Se han utilizado las runes principales exigidas en la práctica:
 
 Además, la comunicación entre componentes se ha realizado mediante callbacks en lugar de eventos personalizados clásicos, por ejemplo en las acciones de crear, editar, borrar, ver detalle o añadir productos al carrito.
 
-## 5. Estructura del proyecto
+## 6. Estructura del proyecto
 
 El proyecto se organiza en dos bloques principales:
 
@@ -59,7 +78,7 @@ Dentro del frontend se han separado:
 - `stores/`: estado global
 - `lib/` y `services/`: utilidades, router y acceso a API
 
-## 6. Endpoints y roles utilizados
+## 7. Endpoints y roles utilizados
 
 Se consumen principalmente los siguientes endpoints del backend:
 
@@ -82,10 +101,44 @@ La aplicación distingue dos roles:
 - `user`: acceso a catálogo, perfil y carrito
 - `admin`: acceso adicional a gestión de productos y usuarios
 
-## 7. Experiencia de usuario
+Como el backend no incluye endpoints específicos de pedidos, la funcionalidad de compra final se ha resuelto simulando el pedido en el frontend. El pedido se guarda en almacenamiento local asociado al usuario y el carrito real sí se vacía utilizando la API disponible.
+
+## 8. Puesta en marcha
+
+El orden correcto de ejecución es:
+
+1. arrancar MongoDB
+2. arrancar Redis
+3. ejecutar el backend
+4. ejecutar el frontend
+
+Comandos principales:
+
+```powershell
+cd backend
+Copy-Item .env.example .env
+cmd /c npm.cmd install
+cmd /c npm.cmd run seed
+cmd /c npm.cmd run dev
+```
+
+```powershell
+cd frontend
+Copy-Item .env.example .env
+cmd /c npm.cmd install
+cmd /c npm.cmd run dev
+```
+
+URLs de acceso:
+
+- frontend: `http://localhost:5173`
+- backend: `http://localhost:3000/api`
+- documentación Swagger: `http://localhost:3000/api-docs`
+
+## 9. Experiencia de usuario
 
 Se ha trabajado un diseño responsive para escritorio y móvil, evitando una interfaz básica sin estilo. También se han añadido mensajes de error y éxito, botones deshabilitados durante operaciones asíncronas, confirmación de borrados y control de acceso visual según el rol del usuario.
 
-## 8. Conclusión
+## 10. Conclusión
 
 La práctica cumple los requisitos mínimos solicitados y añade varias funcionalidades avanzadas, especialmente en persistencia de sesión, filtros, gestión de usuarios y mejora de experiencia de usuario. También se ha aplicado de forma explícita la filosofía de Svelte 5 mediante runes y componentes reutilizables, alineando la implementación con los criterios de evaluación de la práctica.
